@@ -3,7 +3,8 @@ const fileUploader = require('../config/cloudinary.config');
 
 
 const createListingController = (req, res, next) => {
-    console.log(req.body)
+    console.log(req.file)
+    console.log(req.file.path)
     
     Listing.create({
         title: req.body.title,
@@ -14,8 +15,13 @@ const createListingController = (req, res, next) => {
         yardAndGrillImage: req.body.yardAndGrillImage,
     
     })
-   
-    if (req.body.title || !req.body.brandGrill || !req.body.modelGrill || !req.body.yardDetailsAndSize || !req.body.price || !req.body.yardAndGrillImage){
+    if (!req.file) {
+        next(new Error("No file uploaded!"))
+        return
+    }
+    res.json({ yardAndGrillImage: req.file.path })
+
+    if (!req.body.title || !req.body.brandGrill || !req.body.modelGrill || !req.body.yardDetailsAndSize || !req.body.price || !req.body.yardAndGrillImage){
         return res.json({
             error: {
                 message: " All fields are require to create a new listing"
