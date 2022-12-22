@@ -21,6 +21,8 @@ yardAndGrillImage: {type: String,
         require: true },
 
 owner: {type: Schema.Types.ObjectId, ref: "User"},
+latitude: Number,
+longitude: Number
 },
 
 {timestamps: true})

@@ -24,7 +24,9 @@ const createListingController = (req, res, next) => {
         yardDetailsAndSize: req.body.yardDetailsAndSize,
         price: req.body.price,
         yardAndGrillImage: req.body.yardAndGrillImage,
-        owner: req.body.owner
+        owner: req.body.owner,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude
     
     })
     .then(createdListing => {

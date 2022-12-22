@@ -20,6 +20,8 @@ router.get('/my-listings/:id', getMyListingController )
 
 
 
+
+
 router.post('/upload', fileUploader.single("yardAndGrillImage"), (req, res, next) => {
     //localStorage.clear() 
     if (!req.file) {
