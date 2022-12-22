@@ -5,7 +5,8 @@ const { createListingController,
         getListingController,
         getListingControllerById,
         updateListingController,
-        deleteListingController
+        deleteListingController,
+        getMyListingController
         } = require('../controllers/listing.controller')
 
 router.post('/listing', fileUploader.single("yardAndGrillImage"),createListingController );
@@ -14,15 +15,19 @@ router.get ('/listing/:listingId',getListingControllerById);
 router.put ('/listing/:listingId',updateListingController);
 router.delete ('/listing/:listingId', deleteListingController);
 
+router.get('/my-listings/:id', getMyListingController )
 
-// router.post('/upload', fileUploader.single("yardAndGrillImage"), (req, res, next) => {
-//     //localStorage.clear() 
-//     if (!req.file) {
-//         next(new Error("No file uploaded!"))
-//         return
-//     }
-//     res.json({ fileUrl: req.file.path })
-// })
+
+
+
+router.post('/upload', fileUploader.single("yardAndGrillImage"), (req, res, next) => {
+    //localStorage.clear() 
+    if (!req.file) {
+        next(new Error("No file uploaded!"))
+        return
+    }
+    res.json({ fileUrl: req.file.path })
+})
 
 module.exports = router
 
